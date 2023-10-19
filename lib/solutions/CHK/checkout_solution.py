@@ -38,13 +38,23 @@ def checkout(skus):
     | D    | 15    |                        |
     | E    | 40    | 2E get one B free      |
     +------+-------+------------------------+
+    +------+-------+------------------------+
+    | Item | Price | Special offers         |
+    +------+-------+------------------------+
+    | A    | 50    | 3A for 130, 5A for 200 |
+    | B    | 30    | 2B for 45              |
+    | C    | 20    |                        |
+    | D    | 15    |                        |
+    | E    | 40    | 2E get one B free      |
+    | F    | 10    | 2F get one F free      |
+    +------+-------+------------------------+
 
     """
     if False:
         skus = skus.upper()
         skus = re.sub("[^A-D]", "", skus)
     if True:
-        if re.sub("[A-E]", "", skus).__len__() > 0:
+        if re.sub("[A-F]", "", skus).__len__() > 0:
             return -1
 
     prices = {
@@ -53,6 +63,7 @@ def checkout(skus):
         "C": 20,
         "D": 15,
         "E": 40,
+        "F": 10,
     }
 
     special_offers = {
@@ -61,7 +72,8 @@ def checkout(skus):
     }
 
     free_item_offers = {
-        "E": (2, 1, "B")
+        "E": (2, 1, "B"),
+        "F": (2, 1, "F"),
     }
 
     item_counts = Counter(skus)
@@ -93,8 +105,14 @@ def checkout(skus):
     return total_price
 
 
-print(checkout("a-AB"))
-print(checkout(9*"A"))
-print(checkout(2*"E"+4*"B"))
+# print(checkout("a-AB"))
+# print(checkout(9*"A"))
+# print(checkout(2*"E"+4*"B"))
+print(checkout(1*"F"))
+print(checkout(2*"F"))
+print(checkout(3*"F"))
+print(checkout(4*"F"))
+print(checkout(5*"F"))
+
 
 
