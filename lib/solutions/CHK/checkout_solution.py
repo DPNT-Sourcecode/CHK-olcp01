@@ -29,7 +29,7 @@ from collections import Counter
 # skus = unicode string
 def checkout(skus):
     skus = skus.upper()
-    skus = re.sub("^[A-D]", "", skus)
+    skus = re.sub("[^A-D]", "", skus)
 
     prices = {
         "A": 50,
@@ -58,4 +58,5 @@ def checkout(skus):
     return total_price
 
 
-checkout("a")
+checkout("a-AB")
+
