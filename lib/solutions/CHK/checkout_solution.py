@@ -78,6 +78,17 @@ def checkout(skus):
     | Y    | 10    |                        |
     | Z    | 50    |                        |
     +------+-------+------------------------+
+
+    | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    | U    | 40    | 3U get one U free               |
+    | V    | 50    | 2V for 90, 3V for 130           |
+    | W    | 20    |                                 |
+    | X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    | Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    | Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    +------+-------+---------------------------------+
+
     """
     if False:
         skus = skus.upper()
@@ -136,8 +147,18 @@ def checkout(skus):
 
     }
 
+    group_discount_offers = [
+        (("S","T","X","Y","Z"), 3, 45 )
+    ]
+
     item_counts = Counter(skus)
     total_price = 0
+
+    # Group discount offer
+    for gdo_rule in group_discount_offers:
+        item_counts_gdo_applicable = {k: v for k, v in item_counts.items() if k in gdo_rule[0]}
+        num_discountable_items = int(sum(item_counts_gdo_applicable.values())/gdo_rule[1])*gdo_rule[1]
+        a=0
 
     for itm_id, offer_rule in free_item_offers.items():
         if itm_id in item_counts.keys():
@@ -173,9 +194,11 @@ def checkout(skus):
 # print(checkout("a-AB"))
 # print(checkout(9*"A"))
 # print(checkout(2*"E"+4*"B"))
-print(checkout(1*"F"))
-print(checkout(2*"F"))
-print(checkout(3*"F"))
-print(checkout(4*"F"))
-print(checkout(5*"F"))
-print(checkout(6*"F"))
+# print(checkout(1*"F"))
+# print(checkout(2*"F"))
+# print(checkout(3*"F"))
+# print(checkout(4*"F"))
+# print(checkout(5*"F"))
+# print(checkout(6*"F"))
+print(checkout("STXYZ"))
+
