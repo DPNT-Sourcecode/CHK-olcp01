@@ -95,5 +95,6 @@ def checkout(skus):
 
 print(checkout("a-AB"))
 print(checkout(9*"A"))
-print(checkout(2*"B"+1*"E"))
+print(checkout(2*"E"+4*"B"))
+
 
