@@ -29,7 +29,12 @@ from collections import Counter
 def checkout(skus):
     item_counts = Counter(skus)
     for k,v in item_counts.items():
+        if k=="A":
+            items_reduced_price = int(v / 3)
+            items_regular_price = v % 3
+            a=0
         print(k,v)
 
-checkout("AABCE")
+checkout("AAAAAAABCE")
+
 
