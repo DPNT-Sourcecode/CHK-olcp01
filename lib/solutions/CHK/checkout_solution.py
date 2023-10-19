@@ -21,7 +21,7 @@ Where:
  - param[0] = a String containing the SKUs of all the products in the basket
  - @return = an Integer representing the total checkout value of the items
 """
-
+import re
 from collections import Counter
 
 
@@ -29,6 +29,8 @@ from collections import Counter
 # skus = unicode string
 def checkout(skus):
     skus = skus.upper()
+    skus = re.sub("^[A-D]", "", skus)
+
     prices = {
         "A": 50,
         "B": 30,
@@ -57,7 +59,3 @@ def checkout(skus):
 
 
 checkout("a")
-
-
-
-
