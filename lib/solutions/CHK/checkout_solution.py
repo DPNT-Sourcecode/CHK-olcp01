@@ -179,7 +179,3 @@ print(checkout(3*"F"))
 print(checkout(4*"F"))
 print(checkout(5*"F"))
 print(checkout(6*"F"))
-
-
-
-
