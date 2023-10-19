@@ -44,7 +44,7 @@ def checkout(skus):
         skus = skus.upper()
         skus = re.sub("[^A-D]", "", skus)
     if True:
-        if re.sub("[A-D]", "", skus).__len__() > 0:
+        if re.sub("[A-E]", "", skus).__len__() > 0:
             return -1
 
     prices = {
@@ -57,15 +57,23 @@ def checkout(skus):
 
     special_offers = {
         "A": ((3, 130), (5,200)),
-        "B": ((2, 45)),
+        "B": ((2, 45), ),
     }
 
-    free_items = {
+    free_item_offers = {
         "E": (2, 1, "B")
     }
 
     item_counts = Counter(skus)
     total_price = 0
+
+    for itm_id, offer_rule in free_item_offers.items():
+        if itm_id in item_counts.keys():
+            if offer_rule[2] in item_counts.keys():
+                amount_of_free_items = int(item_counts[itm_id]/offer_rule[0])*offer_rule[1]
+                item_counts[offer_rule[2]] = max(0, item_counts[offer_rule[2]] - amount_of_free_items)
+
+
     for k, v in item_counts.items():
         if k in special_offers.keys():
             item_count_unprocessed = v
@@ -87,3 +95,5 @@ def checkout(skus):
 
 print(checkout("a-AB"))
 print(checkout(9*"A"))
+print(checkout(2*"B"+1*"E"))
+
