@@ -28,8 +28,12 @@ from collections import Counter
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    skus = skus.upper()
-    skus = re.sub("[^A-D]", "", skus)
+    if False:
+        skus = skus.upper()
+        skus = re.sub("[^A-D]", "", skus)
+    if True:
+        if re.sub("[A-D]", "", skus).__len__() > 0:
+            return -1
 
     prices = {
         "A": 50,
@@ -58,5 +62,7 @@ def checkout(skus):
     return total_price
 
 
-checkout("a-AB")
+print(checkout("a-AB"))
+print(checkout("AB"))
+
 
