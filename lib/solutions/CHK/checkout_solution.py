@@ -28,6 +28,18 @@ from collections import Counter
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+    """
+    +------+-------+------------------------+
+    | Item | Price | Special offers         |
+    +------+-------+------------------------+
+    | A    | 50    | 3A for 130, 5A for 200 |
+    | B    | 30    | 2B for 45              |
+    | C    | 20    |                        |
+    | D    | 15    |                        |
+    | E    | 40    | 2E get one B free      |
+    +------+-------+------------------------+
+
+    """
     if False:
         skus = skus.upper()
         skus = re.sub("[^A-D]", "", skus)
@@ -40,20 +52,31 @@ def checkout(skus):
         "B": 30,
         "C": 20,
         "D": 15,
+        "E": 40,
     }
 
     special_offers = {
-        "A": (3, 130),
-        "B": (2, 45),
+        "A": ((3, 130), (5,200)),
+        "B": ((2, 45)),
     }
+
+    free_items = {
+        "E": (2, 1, "B")
+    }
+
     item_counts = Counter(skus)
     total_price = 0
     for k, v in item_counts.items():
         if k in special_offers.keys():
-            sets_reduced_price = int(v / special_offers[k][0])
-            items_regular_price = v % special_offers[k][0]
-            total_price += sets_reduced_price * special_offers[k][1]
-            total_price += items_regular_price * prices[k]
+            item_count_unprocessed = v
+            for price_rule in sorted(special_offers[k], key=lambda x: x[0], reverse=True):
+                sets_reduced_price = int(item_count_unprocessed / price_rule[0])
+                total_price += sets_reduced_price * price_rule[1]
+
+                item_count_unprocessed -= (sets_reduced_price * price_rule[0])
+
+
+            total_price += item_count_unprocessed * prices[k]
         else:
             total_price += v * prices[k]
             a = 0
@@ -63,6 +86,7 @@ def checkout(skus):
 
 
 print(checkout("a-AB"))
-print(checkout("AB"))
+print(checkout(9*"A"))
+
 
 
