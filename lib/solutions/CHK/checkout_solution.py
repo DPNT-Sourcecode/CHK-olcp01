@@ -83,8 +83,13 @@ def checkout(skus):
     for itm_id, offer_rule in free_item_offers.items():
         if itm_id in item_counts.keys():
             if offer_rule[2] in item_counts.keys():
-                amount_of_free_items = int(item_counts[itm_id]/offer_rule[0])*offer_rule[1]
-                item_counts[offer_rule[2]] = max(0, item_counts[offer_rule[2]] - amount_of_free_items)
+
+                if itm_id == offer_rule[2]:
+                    amount_of_free_items = int(item_counts[itm_id] / (offer_rule[0] + offer_rule[1]))
+                    item_counts[offer_rule[2]] = max(0, item_counts[offer_rule[2]] - amount_of_free_items)
+                else:
+                    amount_of_free_items = int(item_counts[itm_id] / offer_rule[0]) * offer_rule[1]
+                    item_counts[offer_rule[2]] = max(0, item_counts[offer_rule[2]] - amount_of_free_items)
 
 
     for k, v in item_counts.items():
@@ -114,7 +119,4 @@ print(checkout(2*"F"))
 print(checkout(3*"F"))
 print(checkout(4*"F"))
 print(checkout(5*"F"))
-
-
-
-
+print(checkout(6*"F"))
