@@ -207,7 +207,8 @@ def checkout(skus):
 # print(checkout(5*"F"))
 # print(checkout(6*"F"))
 print(checkout("STXYZ"))  # 20 20 17 20 21 | 17 + 20 + 45 = 82
-print(checkout("STXYZSTXYZ"))  # 20 20 17 20 21 | 21+21 +45+45+45
+print(checkout("STXYZSTXYZ"))  # 20 20 17 20 21 | 17 +45+45+45
+
 
 
 
