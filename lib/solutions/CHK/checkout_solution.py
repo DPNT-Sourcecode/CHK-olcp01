@@ -83,7 +83,7 @@ def checkout(skus):
         skus = skus.upper()
         skus = re.sub("[^A-D]", "", skus)
     if True:
-        if re.sub("[A-F]", "", skus).__len__() > 0:
+        if re.sub("[A-Z]", "", skus).__len__() > 0:
             return -1
     print("\n"+skus)
 
@@ -130,12 +130,10 @@ def checkout(skus):
     free_item_offers = {
         "E": (2, 1, "B"),
         "F": (2, 1, "F"),
-        "XXXX": (None, None, "XXXX"),
-        "XXXX": (None, None, "XXXX"),
-        "XXXX": (None, None, "XXXX"),
-        "XXXX": (None, None, "XXXX"),
-        "XXXX": (None, None, "XXXX"),
-        "XXXX": (None, None, "XXXX"),
+        "N": (3, 1, "M"),
+        "R": (3, 1, "Q"),
+        "U": (3, 1, "U"),
+
     }
 
     item_counts = Counter(skus)
@@ -181,6 +179,7 @@ print(checkout(3*"F"))
 print(checkout(4*"F"))
 print(checkout(5*"F"))
 print(checkout(6*"F"))
+
 
 
 
