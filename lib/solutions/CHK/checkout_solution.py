@@ -109,7 +109,7 @@ def checkout(skus):
         "H": 10,
         "I": 35,
         "J": 60,
-        "K": 80,
+        "K": 70,
         "L": 90,
         "M": 15,
         "N": 40,
@@ -117,14 +117,14 @@ def checkout(skus):
         "P": 50,
         "Q": 30,
         "R": 50,
-        "S": 30,
+        "S": 20,
         "T": 20,
         "U": 40,
         "V": 50,
         "W": 20,
-        "X": 90,
-        "Y": 10,
-        "Z": 50,
+        "X": 17,
+        "Y": 20,
+        "Z": 21,
     }
 
     special_offers = {
@@ -206,6 +206,7 @@ def checkout(skus):
 # print(checkout(4*"F"))
 # print(checkout(5*"F"))
 # print(checkout(6*"F"))
-print(checkout("STXYZ"))
+print(checkout("STXYZ"))  # 20 20 17 20 21
+
 
 
