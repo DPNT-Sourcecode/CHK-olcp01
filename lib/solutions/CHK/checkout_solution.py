@@ -158,6 +158,12 @@ def checkout(skus):
     for gdo_rule in group_discount_offers:
         item_counts_gdo_applicable = {k: v for k, v in item_counts.items() if k in gdo_rule[0]}
         num_discountable_items = int(sum(item_counts_gdo_applicable.values())/gdo_rule[1])*gdo_rule[1]
+        total_price += int(num_discountable_items/gdo_rule[1]) * gdo_rule[2]
+
+        while num_discountable_items>0:
+            most_expensive_item = sorted(list({k: prices[k] for k, v in item_counts.items() if k in gdo_rule[0] and v > 0 }.items()), key=lambda x: -x[1])[0][0]
+            item_counts[most_expensive_item] -= 1
+            num_discountable_items -=1
         a=0
 
     for itm_id, offer_rule in free_item_offers.items():
@@ -201,4 +207,5 @@ def checkout(skus):
 # print(checkout(5*"F"))
 # print(checkout(6*"F"))
 print(checkout("STXYZ"))
+
 
