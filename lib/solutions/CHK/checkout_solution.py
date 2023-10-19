@@ -56,6 +56,7 @@ def checkout(skus):
     if True:
         if re.sub("[A-F]", "", skus).__len__() > 0:
             return -1
+    print("\n"+skus)
 
     prices = {
         "A": 50,
@@ -100,7 +101,7 @@ def checkout(skus):
         else:
             total_price += v * prices[k]
             a = 0
-    print(total_price)
+    #print(total_price)
 
     return total_price
 
@@ -113,6 +114,7 @@ print(checkout(2*"F"))
 print(checkout(3*"F"))
 print(checkout(4*"F"))
 print(checkout(5*"F"))
+
 
 
 
